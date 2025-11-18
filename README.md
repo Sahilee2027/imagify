@@ -41,15 +41,14 @@ project/
 # Clone the repository
 git clone https://github.com/username/project-name.git
 
-
+Frontend
 # Start the client
--Frontend
 cd client
 npm install
 npm run dev
 
+Backend
 # Start the server
--Backend
 cd server
 npm install
 npm start
