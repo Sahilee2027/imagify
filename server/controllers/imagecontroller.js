@@ -35,9 +35,9 @@ export const generateImage=async(req,res)=>{
     //using this base64image we have to generate the image url 
     const resultImage=`data:image/png;base64,${base64Image}` //tells the browser this is image of type png encoded in base64 ${base64image} the actual base64 string representing your image
     //so we already created the image so lets deduct the credit
-    await userModel.findByIdAndUpdate(user._id,{creditBalance:user.creditBalance-1})
+    await userModel.findByIdAndUpdate(user._id,{creditBalance:user.creditBalance-10})
     //after that send the res 
-    res.json({success:true,message:"Image Generated",creditBalance:user.creditBalance-1,resultImage})
+    res.json({success:true,message:"Image Generated",creditBalance:user.creditBalance-10,resultImage})
 
 
    }catch(error){

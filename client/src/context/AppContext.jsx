@@ -12,32 +12,43 @@ const AppContextProvider=(props)=>{
 const [user,setUser]=useState(null);
 const[showLogin,setShowLogin]=useState(false); //false huaa to showlogin form disable hojaenga //for login.jsx
 const [token,setToken]=useState(localStorage.getItem('token'))    
-const [credit,setCredit]=useState(5)
+const [credit,setCredit]=useState(null)
 
     const backendUrl=import.meta.env.VITE_BACKEND_URL
     const navigate=useNavigate();
 
-    const generateImage=async (prompt)=>{
-        try{
-           const {data}= await axios.post(backendUrl + '/api/image/generate-image',{prompt ,userId:user?._id},{headers:{token}})
-           
-           if(data.success){
-            loadCreditsData()
-            return data.resultImage
-           }else{
-            toast.error(data.message)
-            loadCreditsData()
-            if(data.creditBalance===0){
-                  navigate('/buy')
-            }
-           }
+    const generateImage = async (prompt) => {
+    try {
+        const { data } = await axios.post(
+            backendUrl + '/api/image/generate-image',
+            { prompt, userId: user?._id },
+            { headers: { token } }
+        );
 
-        }catch(error){
-            localStorage.removeItem('token');
-            setToken('')
-            setUser(null)
+        if (data.success) {
+            // Update both user and credit state
+            setUser(prev => ({ ...prev, creditBalance: data.creditBalance }));
+            setCredit(data.creditBalance);
+
+            return data.resultImage;
+        } else {
+            toast.error(data.message);
+            // Update credit even if request failed
+            setUser(prev => ({ ...prev, creditBalance: data.creditBalance }));
+            setCredit(data.creditBalance);
+
+            if (data.creditBalance === 0) {
+                navigate('/buy');
+            }
         }
+    } catch (error) {
+        localStorage.removeItem('token');
+        setToken('');
+        setUser(null);
+        toast.error(error.message);
     }
+};
+
 
     const loadCreditsData=async ()=>{
         try{

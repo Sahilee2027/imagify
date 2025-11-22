@@ -10,7 +10,8 @@ const transactionSchema=new mongoose.Schema({
     date:{type:Number}, 
 })
 
-const transactionModel=mongoose.models.user||mongoose.models.transaction||mongoose.model("transaction",transactionSchema)
+const transactionModel = mongoose.models.transaction || mongoose.model("transaction", transactionSchema);
+
 //it will check pehele ki model.user available hai kya if it is available then used that user  reuse
 //but if it not available then new banaenga  if not then it creates the new model
 

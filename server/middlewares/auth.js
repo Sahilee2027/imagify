@@ -17,7 +17,7 @@ const userAuth=async(req,res,next) =>{
 
         if(tokenDecode.id){
             //if(!req.body) req.body={};  //ensure req.body exists
-           req.body.userId=tokenDecode.id; //here you are adding userId from the frontend to the backend
+           req.userId=tokenDecode.id; //here you are adding userId from the frontend to the backend
         } else{
             return res.json({success:false,message:'Not Authorized . Login Again'});
         }

@@ -12,6 +12,7 @@ const app=express()
 //after we have to add the cors in the express app 
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 await connectDB() //when we call this function it will connect our express app to our mongodb database
 //await shows wait until the mongodb connection is fully established 

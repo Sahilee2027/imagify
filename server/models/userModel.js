@@ -5,7 +5,7 @@ const userSchema=new mongoose.Schema({
       name:{type:String,required:true}, //this data should be stored in the database so we add required :true
       email:{type:String,required:true,unique:true}, //so we cannot store the data we the same email id
       password:{type:String ,required:true},
-      creditBalance:{type:Number,default:5},
+      creditBalance:{type:Number,default:50},
 
 })
 //userSchema will define how a user document will look inside your mongoDb collection
