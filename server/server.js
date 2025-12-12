@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors({
     origin: [
         "http://localhost:5173",                 // Local frontend (dev)
-        "https://imagify-2-lwsr.onrender.com"   // Render frontend (live)
+        "https://imagify-2-lwsr.onrender.com" ,  // Render frontend (live)
         "https://imagify-4-qejm.onrender.com"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
